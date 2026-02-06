@@ -1,9 +1,0 @@
-VesselID,CorrosionRate,Age,OperatingPressure,LastInspection
-F-1001,3.8,22,48.5,2022-01-15  # HIGH risk - corrosion critical
-D-2045,0.8,7,32.1,2023-06-20   # LOW risk - recent inspection
-C-3012,2.1,18,45.0,2021-11-30  # MEDIUM risk - age+corrosion
-T-4056,1.5,28,62.3,2020-09-12  # MEDIUM risk - old but moderate corrosion
-R-5089,0.5,12,28.4,2023-03-15  # LOW risk - well maintained
-P-7034,4.2,16,38.9,2022-12-05  # HIGH risk - severe corrosion
-S-8012,0.9,5,22.7,2023-10-18   # LOW risk - new vessel
-V-9023,3.0,32,65.4,2019-08-25  # HIGH risk - old + high corrosion
