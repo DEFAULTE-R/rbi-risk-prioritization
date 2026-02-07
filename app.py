@@ -122,13 +122,25 @@ if df is not None:
         # -------------------------------------------------
         st.subheader("Asset Prioritization Table")
 
-        def color_risk(val):
-            if val == "HIGH":
-                return "background-color: #ffcccc; font-weight: bold"
-            elif val == "MEDIUM":
-                return "background-color: #fff3cd; font-weight: bold"
-            else:
-                return "background-color: #d4edda; font-weight: bold"
+def color_risk(val):
+    if val == "HIGH":
+        return (
+            "background-color: #c62828; "
+            "color: white; "
+            "font-weight: 700;"
+        )
+    elif val == "MEDIUM":
+        return (
+            "background-color: #f9a825; "
+            "color: black; "
+            "font-weight: 700;"
+        )
+    else:  # LOW
+        return (
+            "background-color: #2e7d32; "
+            "color: white; "
+            "font-weight: 700;"
+        )
 
         st.dataframe(
             df_sorted.style.map(color_risk, subset=["RiskCategory"]),
