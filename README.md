@@ -61,3 +61,38 @@ Engineer verification required.
 ## ⚠️ Safety-Critical Design Philosophy
 This tool follows the engineering principle: **"Trust, but verify."** 
 While calculations are transparent, human judgment remains irreplaceable for safety-critical decisions.
+---
+
+## 🚀 Live Demo (Judge-Ready)
+
+The RBI Risk Prioritization Tool is deployed and publicly accessible:
+
+🔗 **Live App:**  
+https://rbi-risk-prioritization.streamlit.app/
+
+---
+
+## ⚡ Quick Start (30 seconds)
+
+1. Open the live app link above  
+2. Upload a CSV with columns:
+   - `VesselID`
+   - `CorrosionRate`
+   - `Age`
+   - `OperatingPressure`
+3. View risk-based inspection priority
+4. Download the prioritized inspection report
+
+If no file is uploaded, the app runs using bundled sample refinery data.
+
+---
+
+## ⚠️ Safety & Scope Notice
+
+- This tool provides **decision support only**
+- All outputs **require engineer verification**
+- No machine learning or black-box models are used
+- Logic is deterministic and auditable (`risk_calculator.py`)
+
+Designed for **resource-constrained Indian refinery environments**.
+
