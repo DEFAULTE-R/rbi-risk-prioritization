@@ -174,3 +174,8 @@ if df is not None:
             "DISCLAIMER: This application provides decision support only. "
             "Inspection scheduling and certification remain the responsibility of qualified personnel."
         )
+st.markdown("---")
+st.caption(
+    f"Submission-ready demo • Deterministic RBI logic • "
+    f"Last updated: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M')}"
+)
