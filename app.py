@@ -46,7 +46,7 @@ uploaded_file = st.sidebar.file_uploader(
 df = None
 
 if uploaded_file is None:
-    st.sidebar.info("Using sample vessel data.")
+    st.sidebar.info("Using sample vessel data (no CSV uploaded).")
     try:
         df = pd.read_csv("data/vessels.csv")
     except FileNotFoundError:
@@ -122,10 +122,10 @@ if df is not None:
         # -------------------------------------------------
         st.subheader("Asset Prioritization Table")
 
-        # Color function for risk categories
+        # Color function for risk categories with darker HIGH red
         def color_risk(val):
             if val == "HIGH":
-                return "background-color: #b71c1c; color: white; font-weight: bold"
+                return "background-color: #8b0000; color: white; font-weight: bold"
             elif val == "MEDIUM":
                 return "background-color: #f9a825; color: black; font-weight: bold"
             else:
@@ -140,6 +140,11 @@ if df is not None:
         st.dataframe(
             display_df.style.map(color_risk, subset=["RiskCategory"]),
             use_container_width=True
+        )
+        
+        # Add units clarification
+        st.caption(
+            "Units: CorrosionRate = mm/year • OperatingPressure = bar • Age = years"
         )
 
         # -------------------------------------------------
