@@ -136,15 +136,18 @@ if df is not None:
         display_df["CorrosionRate"] = display_df["CorrosionRate"].map("{:.2f}".format)
         display_df["OperatingPressure"] = display_df["OperatingPressure"].map("{:.1f}".format)
         display_df["RiskScore"] = display_df["RiskScore"].map("{:.2f}".format)
+        
+        # Rename columns for display with units (DISPLAY ONLY)
+        display_df = display_df.rename(columns={
+            "CorrosionRate": "Corrosion Rate (mm/year)",
+            "OperatingPressure": "Operating Pressure (bar)",
+            "Age": "Age (years)",
+            "RiskScore": "Risk Score"
+        })
 
         st.dataframe(
             display_df.style.map(color_risk, subset=["RiskCategory"]),
             use_container_width=True
-        )
-        
-        # Add units clarification
-        st.caption(
-            "Units: CorrosionRate = mm/year • OperatingPressure = bar • Age = years"
         )
 
         # -------------------------------------------------
