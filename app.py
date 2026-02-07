@@ -3,7 +3,7 @@ import pandas as pd
 from risk_calculator import calculate_risk
 
 # -------------------------------------------------
-# Page Configuration (DO THIS FIRST)
+# Page Configuration 
 # -------------------------------------------------
 st.set_page_config(
     page_title="RBI Risk Prioritization Tool",
@@ -122,7 +122,7 @@ if df is not None:
         # -------------------------------------------------
         st.subheader("Asset Prioritization Table")
 
-        # Approved color function with high-contrast colors
+        # Color function for risk categories
         def color_risk(val):
             if val == "HIGH":
                 return "background-color: #b71c1c; color: white; font-weight: bold"
@@ -131,8 +131,21 @@ if df is not None:
             else:
                 return "background-color: #1b5e20; color: white; font-weight: bold"
 
+        # Create display copy with rounded values
+        display_df = df_sorted.copy()
+        
+        # Round numerical columns to 2 decimal places
+        numeric_columns = ["CorrosionRate", "OperatingPressure", "RiskScore"]
+        for col in numeric_columns:
+            if col in display_df.columns:
+                display_df[col] = display_df[col].round(2)
+        
+        # Format Age as integer
+        if "Age" in display_df.columns:
+            display_df["Age"] = display_df["Age"].astype(int)
+
         st.dataframe(
-            df_sorted.style.map(color_risk, subset=["RiskCategory"]),
+            display_df.style.map(color_risk, subset=["RiskCategory"]),
             use_container_width=True
         )
 
@@ -147,6 +160,9 @@ if df is not None:
         priority_df = df_sorted[
             ["VesselID", "RiskScore", "RiskCategory"]
         ].head(5).copy()
+        
+        # Round RiskScore
+        priority_df["RiskScore"] = priority_df["RiskScore"].round(2)
 
         priority_df["Recommended Action"] = priority_df["RiskCategory"].apply(
             lambda x: "INSPECT WITHIN 7 DAYS" if x == "HIGH"
@@ -175,6 +191,7 @@ if df is not None:
             "DISCLAIMER: This application provides decision support only. "
             "Inspection scheduling and certification remain the responsibility of qualified personnel."
         )
+
 st.markdown("---")
 st.caption(
     f"Submission-ready demo • Deterministic RBI logic • "
