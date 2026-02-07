@@ -72,18 +72,7 @@ if df is not None:
     if missing_columns:
         st.error(f"Missing required columns: {', '.join(missing_columns)}")
     else:
-        # ✅ ROUND DATA IMMEDIATELY AFTER LOADING
-        # Round numerical columns to 2 decimal places BEFORE calculation
-        numeric_columns = ["CorrosionRate", "OperatingPressure"]
-        for col in numeric_columns:
-            if col in df.columns:
-                df[col] = df[col].round(2)
-        
-        # Format Age as integer
-        if "Age" in df.columns:
-            df["Age"] = df["Age"].astype(int)
-
-        # Calculate Risk
+        # Calculate Risk (keep internal precision)
         df[['RiskScore', 'RiskCategory']] = df.apply(
             lambda row: calculate_risk(
                 row["CorrosionRate"],
@@ -93,9 +82,6 @@ if df is not None:
             axis=1,
             result_type="expand"
         )
-
-        # ✅ ROUND RISKSCORE TOO
-        df["RiskScore"] = df["RiskScore"].round(2)
 
         df_sorted = df.sort_values(by="RiskScore", ascending=False)
 
@@ -145,8 +131,14 @@ if df is not None:
             else:
                 return "background-color: #1b5e20; color: white; font-weight: bold"
 
+        # Format numeric columns for human-readable display (DISPLAY ONLY)
+        display_df = df_sorted.copy()
+        display_df["CorrosionRate"] = display_df["CorrosionRate"].map("{:.2f}".format)
+        display_df["OperatingPressure"] = display_df["OperatingPressure"].map("{:.1f}".format)
+        display_df["RiskScore"] = display_df["RiskScore"].map("{:.2f}".format)
+
         st.dataframe(
-            df_sorted.style.map(color_risk, subset=["RiskCategory"]),
+            display_df.style.map(color_risk, subset=["RiskCategory"]),
             use_container_width=True
         )
 
@@ -161,6 +153,9 @@ if df is not None:
         priority_df = df_sorted[
             ["VesselID", "RiskScore", "RiskCategory"]
         ].head(5).copy()
+        
+        # Format RiskScore for display
+        priority_df["RiskScore"] = priority_df["RiskScore"].map("{:.2f}".format)
 
         priority_df["Recommended Action"] = priority_df["RiskCategory"].apply(
             lambda x: "INSPECT WITHIN 7 DAYS" if x == "HIGH"
