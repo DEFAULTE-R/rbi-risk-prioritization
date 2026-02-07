@@ -1,98 +1,81 @@
-# rbi-risk-prioritization
-# RBI Risk Prioritization Tool
-
-A decision-support tool for prioritizing vessel inspection based on risk score.
-
-## Risk Logic
-(Defined in `risk_calculator.py`)
-
-**Score Formula:**  
-`Risk = (CorrosionRate * 2.0) + (Age * 0.3 IF Age > 15) + (Pressure * 0.01)`
-
-**Thresholds:**
-- **HIGH**: Score > 7.5
-- **MEDIUM**: Score > 4.0
-- **LOW**: Otherwise
-
-## How to Run
 # 🏭 RBI Risk Prioritization Tool
-**GRASP Hackathon Submission - Indian Refinery Safety Focus**
+**GRASP Hackathon Submission – Indian Refinery Safety Focus**
 
-## 🚀 Quick Start (30 seconds)
-```bash
-pip install -r requirements.txt
-streamlit run app.py
+A decision-support tool that helps integrity engineers prioritize pressure vessel inspections using transparent, deterministic risk logic.
 
-1.  **Install Dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-2.  **Run Application:**
-    ```bash
-    streamlit run app.py
-    ```
-
-3.  **Usage:**
-    - Upload a CSV having columns: `VesselID`, `CorrosionRate`, `Age`, `OperatingPressure`
-    - Or view the embedded sample data.
-    
-## Why No Machine Learning?
-RBI inspection decisions require deterministic, auditable logic.
-Black-box models are unsuitable for safety-critical refinery environments.
-
-"""
-Calculate RBI risk score using transparent, auditable logic.
-Inputs:
-- corrosion_rate: mm/year
-- age: years
-- pressure: bar
-Engineer verification required.
-"""
-
-*Engineer verification required for all outputs.*
-## 🏆 GRASP Hackathon Compliance
-- **No Machine Learning**: Deterministic calculations only
-- **Transparent Logic**: Every risk score is reproducible
-- **Safety-First**: Engineer verification mandatory
-- **Constraint Adherence**: Streamlit + Pandas only
-- **Real-World Ready**: CSV I/O for refinery integration
-
-## ⚠️ Safety-Critical Design Philosophy
-This tool follows the engineering principle: **"Trust, but verify."** 
-While calculations are transparent, human judgment remains irreplaceable for safety-critical decisions.
 ---
 
 ## 🚀 Live Demo (Judge-Ready)
 
-The RBI Risk Prioritization Tool is deployed and publicly accessible:
-
 🔗 **Live App:**  
 https://rbi-risk-prioritization.streamlit.app/
 
+_No installation required._
+
 ---
 
-## ⚡ Quick Start (30 seconds)
+## ⚡ How to Use (30 seconds)
 
 1. Open the live app link above  
 2. Upload a CSV with columns:
    - `VesselID`
-   - `CorrosionRate`
-   - `Age`
-   - `OperatingPressure`
-3. View risk-based inspection priority
-4. Download the prioritized inspection report
+   - `CorrosionRate` (mm/year)
+   - `Age` (years)
+   - `OperatingPressure` (bar)
+3. View the risk-prioritized inspection list  
+4. Download the prioritized inspection report  
 
 If no file is uploaded, the app runs using bundled sample refinery data.
+
+---
+
+## 📐 Risk Logic (Transparent & Auditable)
+
+Defined in `risk_calculator.py`.
+
+**Risk Score Formula:**
+
+Risk = (CorrosionRate × 2.0)
++ (Age × 0.3, only if Age > 15 years)
++ (OperatingPressure × 0.01)
+
+
+**Risk Categories:**
+- **HIGH**: Score > 7.5  
+- **MEDIUM**: Score > 4.0  
+- **LOW**: Otherwise  
+
+All calculations are deterministic and reproducible.
+
+---
+
+## ❓ Why No Machine Learning?
+
+Risk-Based Inspection (RBI) decisions are safety-critical and require:
+- Deterministic behavior
+- Full auditability
+- Engineer verification
+
+Black-box ML models are unsuitable for such environments.  
+This tool provides **decision support**, not automated decisions.
+
+---
+
+## 🏆 GRASP Hackathon Compliance
+
+- ✅ **No Machine Learning** – deterministic calculations only  
+- ✅ **Transparent Logic** – every score is explainable  
+- ✅ **Safety-First** – engineer verification mandatory  
+- ✅ **Constraint Adherence** – Streamlit + Pandas only  
+- ✅ **Real-World Ready** – CSV I/O compatible with refinery workflows  
 
 ---
 
 ## ⚠️ Safety & Scope Notice
 
 - This tool provides **decision support only**
-- All outputs **require engineer verification**
-- No machine learning or black-box models are used
-- Logic is deterministic and auditable (`risk_calculator.py`)
+- Inspection scheduling and certification remain the responsibility of qualified engineers
+- Designed for **resource-constrained Indian refinery environments**
 
-Designed for **resource-constrained Indian refinery environments**.
-
+**Engineering principle followed:**  
+> _Trust the logic. Verify the decision._
