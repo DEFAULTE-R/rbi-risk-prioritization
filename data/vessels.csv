@@ -1,9 +1,13 @@
-VesselID,CorrosionRate,Age,OperatingPressure
-F-1001,3.2,24,48.5
-D-2045,0.8,7,32.1
-C-3012,1.9,19,45.0
-T-4056,2.5,28,62.3
-R-5089,0.5,12,28.4
-H-6123,1.2,32,55.6
-P-7034,3.8,16,38.9
-S-8012,0.9,5,22.7
+VesselID,CorrosionRate,Age,OperatingPressure,LastInspection,Location,Notes
+F-1001,3.8,22,48.5,2022-01-15,Crude Unit,HIGH - Severe corrosion in feed line
+D-2045,0.8,7,32.1,2023-06-20,Distillation,LOW - Recent inspection, good condition
+C-3012,2.1,18,45.0,2021-11-30,Cracker,MEDIUM - Age+corrosion requires attention
+T-4056,1.5,28,62.3,2020-09-12,Storage Tank,MEDIUM - High pressure, older vessel
+R-5089,0.5,12,28.4,2023-03-15,Reformer,LOW - Well maintained, low risk
+P-7034,4.2,16,38.9,2022-12-05,Pump Array,HIGH - Critical corrosion >4.0 mm/yr
+S-8012,0.9,5,22.7,2023-10-18,Separator,LOW - New installation
+V-9023,3.0,32,65.4,2019-08-25,Vacuum Unit,HIGH - Old vessel, high corrosion
+H-6123,1.2,8,55.6,2022-05-15,Heater,LOW - Moderate age, low corrosion
+K-1124,2.8,14,42.3,2021-12-10,Compressor,MEDIUM - Approaching 15-year threshold
+M-2256,0.3,3,18.9,2023-11-05,Mixer,LOW - Brand new equipment
+N-3347,1.9,21,39.8,2020-04-22,Distillation,MEDIUM - Needs age assessment
